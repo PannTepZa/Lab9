@@ -4,15 +4,16 @@ using namespace std;
 
 int main(){	
 	double loan, interestRate, payment;
+	int year = 1;
 	cout << "Enter initial loan: ";
 	cin >> loan;
-	cin.ignore(1000, '\n'); //To ignore the remaining characters in the input buffer
+	cin.ignore(1000, '\n'); 
 	cout << "Enter interest rate per year (%): ";
 	cin >> interestRate;
-	cin.ignore(1000, '\n'); //To ignore the remaining characters in the input buffer
+	cin.ignore(1000, '\n'); 
 	cout << "Enter amount you can pay per year: ";
 	cin >> payment;
-	cin.ignore(1000, '\n'); //To ignore the remaining characters in the input buffer
+	cin.ignore(1000, '\n'); 
 
 	//use 'setw' to set width of table and 'left' to set left-alignment
 	//you can change input argument of 'setw()' to see the effect
@@ -27,14 +28,37 @@ int main(){
 	
 	//use 'fixed' and 'setprecision' to fix the number of decimal digits for displaying
 	//you can change input argument of 'setprecision()' to see the effect
-	cout << fixed << setprecision(2); 
-	cout << setw(13) << left << 1; 
-	cout << setw(13) << left << 1000.0;
-	cout << setw(13) << left << 50.0;
-	cout << setw(13) << left << 1050.0;
-	cout << setw(13) << left << 100.0;
-	cout << setw(13) << left << 950.0;
-	cout << "\n";	
-	
+	while (true){
+		double interest = loan * (interestRate / 100);
+		double total = loan + interest;
+		double newBalance = total - payment;
+		
+		if (newBalance <= 0){
+			payment = total; 
+			newBalance = 0;
+		}
+		if (newBalance == 0){
+			cout << fixed << setprecision(2); 
+			cout << setw(13) << left << year; 
+			cout << setw(13) << left << loan;
+			cout << setw(13) << left << interest;
+			cout << setw(13) << left << total;
+			cout << setw(13) << left << payment;
+			cout << setw(13) << left << newBalance;
+			cout << "\n";	
+			break;
+		}
+		cout << fixed << setprecision(2); 
+		cout << setw(13) << left << year; 
+		cout << setw(13) << left << loan;
+		cout << setw(13) << left << interest;
+		cout << setw(13) << left << total;
+		cout << setw(13) << left << payment;
+		cout << setw(13) << left << newBalance;
+		cout << "\n";	
+		
+		loan = newBalance;
+		year ++; 
+	}	
 	return 0;
 }
