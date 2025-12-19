@@ -3,9 +3,16 @@
 using namespace std;
 
 int main(){	
+	double loan, interestRate, payment;
 	cout << "Enter initial loan: ";
+	cin >> loan;
+	cin.ignore(1000, '\n'); //To ignore the remaining characters in the input buffer
 	cout << "Enter interest rate per year (%): ";
+	cin >> interestRate;
+	cin.ignore(1000, '\n'); //To ignore the remaining characters in the input buffer
 	cout << "Enter amount you can pay per year: ";
+	cin >> payment;
+	cin.ignore(1000, '\n'); //To ignore the remaining characters in the input buffer
 
 	//use 'setw' to set width of table and 'left' to set left-alignment
 	//you can change input argument of 'setw()' to see the effect
